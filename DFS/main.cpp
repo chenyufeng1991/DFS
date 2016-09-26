@@ -5,8 +5,8 @@
 using namespace std;
 
 struct adj_matrix {
-    int vertex[N];
-    int edge[N][N];
+    int vertex[N]; // 节点
+    int edge[N][N]; // 边
 };
 
 struct adj_matrix matrix = {
@@ -20,7 +20,7 @@ struct adj_matrix matrix = {
     }
 };
 
-int visit[N] = {0, 0, 0, 0};
+int visit[N] = {0, 0, 0, 0}; // 是否被访问过标记
 
 void dfs_visit(struct adj_matrix *G, int u)
 {
