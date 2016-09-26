@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#define N 6
+#define N 4
 
 struct adj_matrix {
     int vertex[N];
@@ -8,30 +8,28 @@ struct adj_matrix {
 };
 
 struct adj_matrix matrix = {
-    {1, 2, 3, 4, 5, 6},
+    {1, 2, 3, 4},
 
-        {
-        {0, 1, 0, 0, 1, 0},
-        {1, 0, 1, 0, 0, 0},
-        {0, 1, 0, 0, 0, 1},
-        {0, 0, 0, 0, 0, 1},
-        {1, 0, 0, 0, 0, 0},
-        {0, 0, 1, 1, 0, 0}
-        }
+    {
+        {0, 1, 0, 1},
+        {1, 0, 1, 0},
+        {0, 1, 0, 0},
+        {1, 0, 0, 0},
+    }
 };
 
-int visit[N] = {0, 0, 0, 0, 0, 0};
+int visit[N] = {0, 0, 0, 0};
 
 void dfs_visit(struct adj_matrix *G, int u)
 {
-    int v;
-
     visit[u] = 1;
-
     printf("%3d", G->vertex[u]);
 
-    for (v = 0; v < N; v++) {
-        if (G->edge[u][v] == 1 && visit[v] != 1) {
+    for (int v = 0; v < N; v++)
+    {
+        // 表示存在一条边，并这个节点没有被访问
+        if (G->edge[u][v] == 1 && visit[v] != 1)
+        {
             dfs_visit(G, v);
         }
     }
@@ -39,10 +37,10 @@ void dfs_visit(struct adj_matrix *G, int u)
 
 void dfs(struct adj_matrix *G)
 {
-    int u;
-
-    for (u = 0; u < N; u++) {
-        if (visit[u] != 1) {
+    for (int u = 0; u < N; u++)
+    {
+        if (visit[u] != 1)
+        {
             dfs_visit(G, u);
         }
     }
