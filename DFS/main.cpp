@@ -1,6 +1,8 @@
-#include <stdio.h>
+#include <iostream>
 
 #define N 4
+
+using namespace std;
 
 struct adj_matrix {
     int vertex[N];
@@ -8,13 +10,13 @@ struct adj_matrix {
 };
 
 struct adj_matrix matrix = {
-    {1, 2, 3, 4},
+    {0, 1, 2, 3},
 
     {
-        {0, 1, 0, 1},
-        {1, 0, 1, 0},
-        {0, 1, 0, 0},
-        {1, 0, 0, 0},
+        {0, 0, 0, 1},
+        {0, 0, 0, 1},
+        {0, 0, 0, 1},
+        {1, 1, 1, 0},
     }
 };
 
@@ -22,8 +24,9 @@ int visit[N] = {0, 0, 0, 0};
 
 void dfs_visit(struct adj_matrix *G, int u)
 {
+    // 遍历了该节点
     visit[u] = 1;
-    printf("%3d", G->vertex[u]);
+    cout << G->vertex[u] << " ";
 
     for (int v = 0; v < N; v++)
     {
@@ -46,10 +49,10 @@ void dfs(struct adj_matrix *G)
     }
 }
 
-int main(void)
+int main(int argc, const char *argv[])
 {
     dfs(&matrix);
-    printf("\n");
+    cout << endl;
 
     return 0;
 }
